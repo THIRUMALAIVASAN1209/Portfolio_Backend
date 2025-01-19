@@ -1,17 +1,14 @@
-const express = require('express');
+import express from 'express';
+import userRoute from './routes/userRoute.js';
+
 const app = express();
-app.set('view engine','ejs');
-app.get('/',(req, res) => {
-  // console.log("Hi");
-  // res.status(500).send("Error occured")
-  // res.status(200).send({error:"error occured"});
-  // res.json({express:"Learning express"});
-  // res.send(400);
-  res.render("index",{text:"World"});
+app.set('view engine', 'ejs');
+app.use('/users', userRoute);
+
+app.get('/', (req, res) => {
+  res.render("index", { text: "World" });
 });
 
-const userRoute = require('./routes/user')
-
-app.use('/users',userRoute)
-
-app.listen(3000);
+app.listen(3000, () => {
+  console.log('Server running on port 3000');
+});

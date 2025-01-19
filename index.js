@@ -7,19 +7,14 @@ import cors from 'cors';
 
 const app = express();
 
-// CORS configuration
-app.use(cors({
-  origin: 'http://localhost:5173', // Allow requests from this origin
-  methods: ['GET', 'POST'], // Allow the necessary HTTP methods
-  allowedHeaders: ['Content-Type'] // Allow the necessary headers
-}));
+app.use(cors());
 
 app.use(bodyParser.json());
 app.use('/users', userRoute); // Adding /users to route
 
 dotenv.config();
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8000;
 const MONGOURL = process.env.MONGO_URL;
 
 mongoose.connect(MONGOURL).then(() => {
